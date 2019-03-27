@@ -13,21 +13,21 @@ from sagemaker_rl.ray_launcher import SageMakerRayLauncher
 def create_environment(env_config):
     # This import must happen inside the method so that worker processes import this code
     import roboschool
-    return gym.make('RoboschoolHopper-v1')
+    return gym.make('CartPole-v0')
 
 
 class MyLauncher(SageMakerRayLauncher):
 
     def register_env_creator(self):
-        register_env("RoboschoolHopper-v1", create_environment)
+        register_env("CartPole-v0", create_environment)
 
     def get_experiment_config(self):
         return {
           "training": { 
-            "env": "RoboschoolHopper-v1",
+            "env": "CartPole-v0",
             "run": "PPO",
             "stop": {
-              "episode_reward_mean": 2500,
+              "episode_reward_mean": 200,
             },
             "config": {
               "gamma": 0.995,
