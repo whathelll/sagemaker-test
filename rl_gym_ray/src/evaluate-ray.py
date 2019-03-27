@@ -50,7 +50,6 @@ def create_parser(parser_creator=None):
 def run(args, parser):
     def create_environment(env_config):
         # This import must happen inside the method so that worker processes import this code
-        import roboschool
         return gym.make(args.env)
 
     if not args.config:

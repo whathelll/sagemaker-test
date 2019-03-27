@@ -5,14 +5,12 @@ import gym
 import ray
 from ray.tune import run_experiments
 from ray.tune.registry import register_env
-import roboschool
 
 from sagemaker_rl.ray_launcher import SageMakerRayLauncher
 
 
 def create_environment(env_config):
     # This import must happen inside the method so that worker processes import this code
-    import roboschool
     return gym.make('CartPole-v0')
 
 
