@@ -25,7 +25,7 @@ class MyLauncher(SageMakerRayLauncher):
             "env": "PongNoFrameskip-v4",
             "run": "IMPALA",
             "stop": {
-              "episode_reward_mean": 10,
+              "episode_reward_mean": 18,
             },
             "config": {
                 "monitor": True,  # Record videos.
@@ -49,8 +49,8 @@ class MyLauncher(SageMakerRayLauncher):
 #                 "sample_batch_size": 50,
 #                 "train_batch_size": 500,
 #                 "min_iter_time_s": 10,
-                "num_workers": 2, #(self.num_cpus-2),
-                "num_gpus": 0,
+                "num_workers": (self.num_cpus-1),
+                "num_gpus": self.num_gpus,
 #                 # set >1 to load data into GPUs in parallel. Increases GPU memory usage
 #                 # proportionally with the number of buffers.
 #                 "num_data_loader_buffers": 1,

@@ -10,7 +10,7 @@ import boto3
 
 import ray
 from ray.tune import run_experiments
-from ray.rllib.agents.agent import get_agent_class
+from ray.rllib.agents.registry import get_agent_class
 
 from .tf_serving_utils import export_tf_serving, natural_keys, change_permissions_recursive
 from .configuration_list import ConfigurationList
@@ -154,7 +154,7 @@ class SageMakerRayLauncher(object):
         return config
 
     def start_ray_cluster(self, master_ip):
-        p = subprocess.Popen("ray start --head --redis-port=6379 --no-ui --node-ip-address=%s" % master_ip,
+        p = subprocess.Popen("ray start --head --redis-port=6379 --node-ip-address=%s" % master_ip,
                              shell=True,
                              stderr=subprocess.STDOUT)
         time.sleep(3)

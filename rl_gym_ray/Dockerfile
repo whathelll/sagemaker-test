@@ -48,7 +48,7 @@ RUN pip install --upgrade \
     pip \
     setuptools
 
-RUN ldconfig
+RUN pip install gym[atari] && pip install -U ray && ldconfig
     
 RUN pip install sagemaker-containers --upgrade
 
